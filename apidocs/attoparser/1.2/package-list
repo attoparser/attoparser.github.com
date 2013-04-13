@@ -1,0 +1,11 @@
+org.attoparser
+org.attoparser.markup
+org.attoparser.markup.dom
+org.attoparser.markup.dom.impl
+org.attoparser.markup.duplicate
+org.attoparser.markup.html
+org.attoparser.markup.html.elements
+org.attoparser.markup.html.trace
+org.attoparser.markup.trace
+org.attoparser.markup.xml
+org.attoparser.util
