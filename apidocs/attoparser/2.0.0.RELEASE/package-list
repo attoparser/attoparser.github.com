@@ -1,0 +1,12 @@
+org.attoparser
+org.attoparser.config
+org.attoparser.discard
+org.attoparser.dom
+org.attoparser.duplicate
+org.attoparser.minimize
+org.attoparser.output
+org.attoparser.prettyhtml
+org.attoparser.select
+org.attoparser.simple
+org.attoparser.trace
+org.attoparser.util
