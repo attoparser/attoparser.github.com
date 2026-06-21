@@ -81,7 +81,6 @@
               <li><a href="issuetracking.html">issue tracking</a></li>
               <li><a href="license.html">license</a></li>
               <li><a href="faq.html">faq</a></li>
-              <li><a href="team.html">team</a></li>
             
               <li class="nav-header">SOURCE REPOSITORIES</li>
               
@@ -99,11 +98,11 @@
         <div class="span10">
 
           <div class="well">
-            <strong>AttoParser 2.0 has been published!</strong> and it comes with a full load of awesome features.
-            Our docs and website aren't still updated for this new version, but there are comprehensive
-            (and updated) <a href="apidocs/attoparser/2.0.8.RELEASE">JavaDoc API</a> docs.
+            <strong>attoparser 2.0</strong> comes with a full load of features. Have a look at the
+            <a href="usingattoparser.html">using attoparser</a> guide to get started, or browse the
+            comprehensive <a href="apidocs/attoparser/2.0.8.RELEASE">JavaDoc API</a> docs.
           </div>
-        
+
           <h3>What is attoparser?</h3>
           
           <p>
@@ -134,27 +133,29 @@
           <h3>What does it look like?</h3>
 
           <p>
-            First, you should create an implementation of <kbd>IAttoHandler</kbd>, usually by
-            extending one of its predefined abstract implementations:
+            First, you should create an implementation of <kbd>IMarkupHandler</kbd> &mdash;or, for a
+            simplified set of events, <kbd>ISimpleMarkupHandler</kbd>&mdash;, usually by extending one
+            of the provided no-op abstract implementations:
           </p>
-          
+
 <pre class="prettyprint linenums language-java">
-public class MyHandler extends AbstractStandardMarkupAttoHandler {
+public class MyHandler extends AbstractSimpleMarkupHandler {
     /*
-     * Provide implementations for the events you are interested on.
+     * Provide implementations for the events you are interested in.
      */
-}   
+}
 </pre>
 
           <p>
             Then simply execute the parser using your handler:
           </p>
-          
+
 <pre class="prettyprint linenums language-java">
 final Reader documentReader = ...;
 
-final IAttoParser parser = new MarkupAttoParser(); // this is thread-safe and can be reused
-final IAttoHandler handler = new MyHandler();
+// Parsers are thread-safe and reusable. This one uses the default HTML configuration.
+final ISimpleMarkupParser parser = new SimpleMarkupParser(ParseConfiguration.htmlConfiguration());
+final ISimpleMarkupHandler handler = new MyHandler();
 
 parser.parse(documentReader, handler);
 </pre>
@@ -264,13 +265,13 @@ parser.parse(documentReader, handler);
             
               <tr>
                 <td>
-                  <strong>Several levels of detail</strong>
+                  <strong>Two levels of detail</strong>
                 </td>
                 <td>
-                  Users can specify the level of detail they need for their events by choosing a specific abstract base
-                  class for their <em>handler implementations</em>. For example, if a user is not interested in
-                  delimiting element (tag) names or attributes, he/she can choose a detail level that ignores 
-                  tag contents, resulting in a performance improvement.
+                  attoparser offers two handler interfaces: a full-detail one (<kbd>IMarkupHandler</kbd>) that
+                  reports every artifact directly on the original <kbd>char[]</kbd> buffer, and a simplified one
+                  (<kbd>ISimpleMarkupHandler</kbd>) that reports elements with their names and attributes already
+                  built as <kbd>String</kbd> and <kbd>Map</kbd> objects for easier handling.
                 </td>
               </tr>
             
@@ -323,7 +324,7 @@ parser.parse(documentReader, handler);
       <hr />
             
       <footer>
-        <p>Copyright &copy; <a href="team.html">Attoparser</a>.</p>
+        <p>Copyright &copy; Attoparser.</p>
       </footer>
       
     </div>
